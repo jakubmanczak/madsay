@@ -15,4 +15,4 @@ FROM debian:bookworm-slim
 COPY --from=build /madsay/target/release/madsay .
 EXPOSE 2004
 
-CMD ./madsay
+CMD ./madsay serve
