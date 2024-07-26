@@ -13,6 +13,10 @@ RUN cargo build -r
 
 FROM debian:bookworm-slim
 COPY --from=build /madsay/target/release/madsay .
+COPY --from=build /madsay/part1.txt .
+COPY --from=build /madsay/part2.txt .
+COPY --from=build /madsay/part3.txt .
+COPY --from=build /madsay/index.html .
 EXPOSE 2004
 
 CMD ./madsay serve
