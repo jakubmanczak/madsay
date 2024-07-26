@@ -1,6 +1,6 @@
 use axum::{
     body::Body,
-    http::{Method, StatusCode},
+    http::{header, Method, StatusCode},
     response::{IntoResponse, Response},
     routing::get,
     Router,
@@ -69,7 +69,9 @@ async fn html_route() -> Response {
     };
 
     let stream = tokio_util::io::ReaderStream::new(file);
+
+    let headers = [(header::CONTENT_TYPE, "text/html; charset=utf-8")];
     let body = Body::from_stream(stream);
 
-    return body.into_response();
+    return (headers, body).into_response();
 }
