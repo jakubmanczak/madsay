@@ -91,8 +91,8 @@ const part3 = [
 function generate() {
     let text = "";
     text += part1[Math.floor(Math.random() * part1.length)] + " ";
-    text += part2[Math.floor(Math.random() * part1.length)] + " ";
-    text += part3[Math.floor(Math.random() * part1.length)];
+    text += part2[Math.floor(Math.random() * part2.length)] + " ";
+    text += part3[Math.floor(Math.random() * part3.length)];
 
     document.getElementById("madtext").innerText = text;
 }
