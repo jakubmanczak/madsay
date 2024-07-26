@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>madsay</title>
+    <style>
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+      }
+      p {
+        color: white;
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        width: 70vw;
+        margin-bottom: 5vw;
+      }
+      button {
+        width: 250px;
+        height: 60px;
+        color: black;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: 1px black solid;
+        border-radius: 25px;
+
+        background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+      button:hover {
+        border: 1px white solid;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p id="madtext"></p>
+      <button id="madgenerate">generate</button>
+    </div>
+  </body>
+  <script defer>
+    async function generate() {
+      let response = await fetch("https://madsay.manczak.net/api");
+      let text = response.ok ? await response.text() : "coś nie pykło";
+
+      document.getElementById("madtext").innerText = text;
+    }
+
+    window.onload = generate;
+
+    document.getElementById("madgenerate").addEventListener("click", generate);
+  </script>
+</html>
