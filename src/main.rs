@@ -22,7 +22,7 @@ fn main() {
         "Spojrzę potem",
         "Profesor Kocik złamał nogę",
         "Homoseksualizm powinien zginąć po prostu",
-        "Ja bym z chęcią pogadał o menelach.",
+        "Ja bym z chęcią pogadał o menelach",
         "Jestem wzorowym rasistą",
         "Tutaj widać motyw wsiura",
         "Ja ci powiem tak:",
