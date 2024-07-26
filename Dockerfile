@@ -17,6 +17,6 @@ COPY --from=build /madsay/part1.txt .
 COPY --from=build /madsay/part2.txt .
 COPY --from=build /madsay/part3.txt .
 COPY --from=build /madsay/index.html .
-EXPOSE 2004
+EXPOSE 2137
 
 CMD ./madsay serve
