@@ -28,7 +28,7 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
-            height: 100vh;
+            height: 80vh;
         }
         p {
             color: white;
@@ -56,6 +56,58 @@
             color: white;
         }
 
+        .achievements {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 20vh;
+        }
+        .achievement, .achievement_done {
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .achievement > img, .achievement_done > img { 
+            width: 100px;
+            height: 100px;
+        }
+
+        .achievement {
+            border: 1px white solid;
+        }
+        .achievement_done {
+            border: 1px goldenrod solid;
+            background-color: gold;
+        }
+
+        .achievement:hover {
+            background-color: rgba(255, 255, 255, 0.30);
+            border: 1px black solid;
+        }
+        .achievement > img {
+            filter: invert(100%);
+        }
+        .achievement:hover > img {
+            filter: invert(0%);
+        }
+
+        .achievement_done:hover {
+            background-color: rgba(255, 215, 0, 0.30);
+            border: 1px gold solid;
+        }
+        .achievement_done > img {
+            filter: invert(0%);
+        }
+        .achievement_done:hover > img {
+            filter: invert(100%);
+        }
+
         @media (max-width: 700px) {
             p {
                 font-size: 7.14vw;
@@ -67,21 +119,55 @@
                 font-size: 4.3vw;
                 border-radius: 3.6vw;
             }
+
+            .achievement, .achievement_done {
+                width: 17.1vw;
+                height: 17.1vw;
+                border-radius: 3.6vw;
+                margin-right: 1.4vw;
+                margin-left: 1.4vw;
+            }
+
+            .achievement > img, .achievement_done > img { 
+                width: 14.3vw;
+                height: 14.3vw;
+            }
         }
         </style>
     </head>
     <body>
+        <div class="achievements">
+            <div id="beton_achievement" class="achievement">
+                <img src="./achievements/beton.png" alt="Kolega beton"/>
+            </div>
+            <div id="matura_achievement" class="achievement">
+                <img src="./achievements/matura.png" alt="Matura"/>
+            </div>
+        </div>
         <div class="container">
             <p id="madtext"></p>
             <button id="madgenerate">generate</button>
         </div>
     </body>
     <script defer>
+        const beton_trigger = "Miałem kolegę co się nazywał beton i ja miałem kolegę co się nazywał beton bo ja miałem kolegę co się nazywał beton.";
+        const matura1_trigger = "Uczyłem się dużo na maturę z matematyki i to nie są korki, tylko kurs maturalny bo muszę dobrze zdać maturę z matematyki.";
+        const matura2_trigger = "Jak ja się cieszę że ta matura z matematyki była trudniejsza i to nie są korki, tylko kurs maturalny bo muszę dobrze zdać maturę z matematyki.";
+
         async function generate() {
             let response = await fetch("https://madsay.manczak.net/api");
             let text = response.ok ? await response.text() : "coś nie pykło";
 
             document.getElementById("madtext").innerText = text;
+
+
+            if ( text == beton_trigger ) {
+                document.getElementById("beton_achievement").className = "achievement_done";
+            }
+
+            if ( text == matura1_trigger || text == matura2_trigger ) {
+                document.getElementById("matura_achievement").className = "achievement_done";
+            }
         }
 
         window.onload = generate;
